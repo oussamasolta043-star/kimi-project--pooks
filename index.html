@@ -88,6 +88,8 @@
             transition: background-color 0.2s;
             flex-shrink: 0;
             margin-right: 15px;
+            cursor: pointer;
+            border: none;
         }
         .download-btn:hover {
             background-color: #219653;
@@ -98,6 +100,199 @@
             color: #7f8c8d;
             font-size: 0.9rem;
         }
+
+        /* ============ النوافذ المنبثقة ============ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 26px;
+            width: 100%;
+            max-width: 470px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+            animation: popIn 0.22s ease;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.9) translateY(10px); opacity: 0; }
+            to   { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal h3 {
+            color: #2c3e50;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .modal-sub {
+            color: #7f8c8d;
+            font-size: 0.92rem;
+            margin-bottom: 22px;
+        }
+        .modal-icon {
+            font-size: 2.4rem;
+            margin-bottom: 6px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 26px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.15s;
+            font-family: inherit;
+            min-width: 140px;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn-read {
+            background-color: #2980b9;
+            color: #fff;
+        }
+        .btn-read:hover { background-color: #1f6391; }
+        .btn-download {
+            background-color: #27ae60;
+            color: #fff;
+        }
+        .btn-download:hover { background-color: #219653; }
+        .btn-cancel {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+        .btn-cancel:hover { background-color: #c0392b; }
+        .modal-close {
+            margin-top: 18px;
+            background: none;
+            border: none;
+            color: #95a5a6;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            text-decoration: underline;
+        }
+        .modal-close:hover { color: #7f8c8d; }
+
+        /* ============ نافذة القراءة ============ */
+        #readerModal { padding: 12px; }
+        .reader-box {
+            background: #fff;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1100px;
+            height: 92vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            animation: popIn 0.22s ease;
+        }
+        .reader-header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .reader-header .reader-title {
+            font-size: 0.98rem;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .reader-tools {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .reader-tools a,
+        .reader-tools button {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 13px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: inherit;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .reader-tools a:hover,
+        .reader-tools button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .reader-tools .close-x { background: #e74c3c; }
+        .reader-tools .close-x:hover { background: #c0392b; }
+        #pdfFrame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: #525659;
+        }
+        .reader-fallback {
+            padding: 8px 14px;
+            background: #fdf6e3;
+            color: #8a6d3b;
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid #f0e3bd;
+        }
+
+        /* ============ رسالة التنبيه ============ */
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: #27ae60;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 2000;
+            pointer-events: none;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .book-card { flex-direction: column; align-items: stretch; gap: 10px; }
+            .download-btn { margin-right: 0; text-align: center; }
+            .reader-tools a span.lbl { display: none; }
+            .btn { min-width: 110px; padding: 11px 16px; font-size: 0.92rem; }
+            .modal { padding: 22px 18px; }
+        }
     </style>
 </head>
 <body>
@@ -107,14 +302,14 @@
         <p>استعرض وتحميل كتب النحو، البلاغة، اللسانيات، والدولات التاريخية</p>
     </header>
 
-    <div class="container">
+    <div class="container" id="booksContainer">
 
         <div class="book-card">
             <div class="book-info">
                 <span class="book-number">1</span>
                 <span class="book-title">حاشية الخضري على شرح ابن عقيل علي ألفية ابن مالك</span>
             </div>
-            <a href="حاشية%20الخضري%20علي%20شرح%20ابن%20عقيل%20علي%20ألفية%20ابن%20مالك.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="حاشية%20الخضري%20علي%20شرح%20ابن%20عقيل%20علي%20ألفية%20ابن%20مالك.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -122,7 +317,7 @@
                 <span class="book-number">2</span>
                 <span class="book-title">البارع في اللغة والأدب</span>
             </div>
-            <a href="البارع%20في%20اللغة%20والأدب.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="البارع%20في%20اللغة%20والأدب.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -130,7 +325,7 @@
                 <span class="book-number">3</span>
                 <span class="book-title">الحسن والاحسان في ما خلا عنه اللسان</span>
             </div>
-            <a href="الحسن%20والاحسان%20في%20ما%20خلا%20عنه%20اللسان.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="الحسن%20والاحسان%20في%20ما%20خلا%20عنه%20اللسان.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -138,7 +333,7 @@
                 <span class="book-number">4</span>
                 <span class="book-title">لب الألباب في علم الإعراب</span>
             </div>
-            <a href="لب%20الألباب%20في%20علم%20الإعراب.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="لب%20الألباب%20في%20علم%20الإعراب.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -146,7 +341,7 @@
                 <span class="book-number">5</span>
                 <span class="book-title">دراسات في فلسفة النحو والصرف واللغة والرسم، د. مصطفى جواد</span>
             </div>
-            <a href="دراسات_في_فلسفة_النحو_والصرف_واللغة_والرسم،_د_مصطفى_جواد.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="دراسات_في_فلسفة_النحو_والصرف_واللغة_والرسم،_د_مصطفى_جواد.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -154,7 +349,7 @@
                 <span class="book-number">6</span>
                 <span class="book-title">معجم الشعراء منذ عصر النهضة - ج3</span>
             </div>
-            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج3.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج3.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -162,7 +357,7 @@
                 <span class="book-number">7</span>
                 <span class="book-title">معجم الشعراء منذ عصر النهضة - ج2</span>
             </div>
-            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج2.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج2.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -170,7 +365,7 @@
                 <span class="book-number">8</span>
                 <span class="book-title">معجم الشعراء منذ عصر النهضة - ج1</span>
             </div>
-            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج1.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="معجم%20الشعراء%20منذ%20عصر%20النهضة%20-%20ج1.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -178,7 +373,7 @@
                 <span class="book-number">9</span>
                 <span class="book-title">المقاييس البيداغوجية والادارية - دليلك نحو النجاح</span>
             </div>
-            <a href="المقاييس%20البيداغوجية%20والادارية%20-%20دليلك%20نحو%20النجاح.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="المقاييس%20البيداغوجية%20والادارية%20-%20دليلك%20نحو%20النجاح.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -186,7 +381,7 @@
                 <span class="book-number">10</span>
                 <span class="book-title">فضاء الكتب - أصول الإنشاء والخطابة ويليه الخطابة عند العرب</span>
             </div>
-            <a href="فضاء%20الكتب-أصول%20الإنشاء%20والخطابة%20ويليه%20الخطابة%20عند%20العرب.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="فضاء%20الكتب-أصول%20الإنشاء%20والخطابة%20ويليه%20الخطابة%20عند%20العرب.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -194,7 +389,7 @@
                 <span class="book-number">11</span>
                 <span class="book-title">ديوان الحماسة 3 (Noor-Book.com)</span>
             </div>
-            <a href="ديوان%20الحماسة%203%20Noor-Book.com.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="ديوان%20الحماسة%203%20Noor-Book.com.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -202,7 +397,7 @@
                 <span class="book-number">12</span>
                 <span class="book-title">حماسة أبي تمام وشروحها (Noor-Book.com)</span>
             </div>
-            <a href="حماسة%20أبي%20تمام%20وشروحها%20Noor-Book.com.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="حماسة%20أبي%20تمام%20وشروحها%20Noor-Book.com.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -210,7 +405,7 @@
                 <span class="book-number">13</span>
                 <span class="book-title">أدوات الربط في العربية المعاصرة</span>
             </div>
-            <a href="115606_ادوات_الربط_في_العربية_المعاصرة.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="115606_ادوات_الربط_في_العربية_المعاصرة.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -218,7 +413,7 @@
                 <span class="book-number">14</span>
                 <span class="book-title">فضاء الكتب - الإعجاز والإيجاز</span>
             </div>
-            <a href="فضاء%20الكتب-الإعجاز%20والإيجاز.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="فضاء%20الكتب-الإعجاز%20والإيجاز.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -226,7 +421,7 @@
                 <span class="book-number">15</span>
                 <span class="book-title">البينة لعلوم اللغة العربية - مجدي رشاد</span>
             </div>
-            <a href="البينة%20لعلوم%20اللغة%20العربية%20-%20مجدي%20رشاد.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="البينة%20لعلوم%20اللغة%20العربية%20-%20مجدي%20رشاد.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -234,7 +429,7 @@
                 <span class="book-number">16</span>
                 <span class="book-title">البلاغة الواضحة - المعاني</span>
             </div>
-            <a href="البلاغة%20الواضحة_المعاني.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="البلاغة%20الواضحة_المعاني.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -242,7 +437,7 @@
                 <span class="book-number">17</span>
                 <span class="book-title">فضاء الكتب - الصناعتين الكتابة والشعر</span>
             </div>
-            <a href="فضاء%20الكتب-الصناعتين%20الكتابة%20والشعر.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="فضاء%20الكتب-الصناعتين%20الكتابة%20والشعر.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -250,7 +445,7 @@
                 <span class="book-number">18</span>
                 <span class="book-title">بنية الخطاب الشعري في لامية عبده بن الطبيب - مقاربة أسلوبية</span>
             </div>
-            <a href="بنية-الخطاب-الشعري-في-لامية-عبده-بن-الطبيب-مقاربة-أسلوبية.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="بنية-الخطاب-الشعري-في-لامية-عبده-بن-الطبيب-مقاربة-أسلوبية.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -258,7 +453,7 @@
                 <span class="book-number">19</span>
                 <span class="book-title">الشعر الجاهلي بين الغنائية والموضوعية - د. عبدالله بن أحمد الفيفي</span>
             </div>
-            <a href="د.%20عبدالله%20بن%20أحمد،%20الشعر%20الجاهلي%20بين%20الغنائية%20والموضوعية%20(1).الفيفي،%20أ.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="د.%20عبدالله%20بن%20أحمد،%20الشعر%20الجاهلي%20بين%20الغنائية%20والموضوعية%20(1).الفيفي،%20أ.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -266,7 +461,7 @@
                 <span class="book-number">20</span>
                 <span class="book-title">لهجات فيفاء (جذور عربية) - د. عبدالله بن أحمد الفيفي</span>
             </div>
-            <a href="الفيفي،%20عبدالله%20بن%20أحمد،%20لهجات%20فيفاء%20(جذور%20العربية)،%2025-1-1433هـ%2020-12-2011م.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="الفيفي،%20عبدالله%20بن%20أحمد،%20لهجات%20فيفاء%20(جذور%20العربية)،%2025-1-1433هـ%2020-12-2011م.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -274,7 +469,7 @@
                 <span class="book-number">21</span>
                 <span class="book-title">ألقاب الشعراء - د. عبدالله بن أحمد الفيفي</span>
             </div>
-            <a href="د.%20عبدالله%20بن%20أحمد،%20ألقاب%20الشعراء.الفيفي،%20أ.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="د.%20عبدالله%20بن%20أحمد،%20ألقاب%20الشعراء.الفيفي،%20أ.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -282,7 +477,7 @@
                 <span class="book-number">22</span>
                 <span class="book-title">شعر التفعيلات وقضايا أخرى (منقحة) - د. عبدالله بن أحمد الفيفي</span>
             </div>
-            <a href="د.%20عبدالله%20بن%20أحمد،%20شعر%20التفعيلات%20وقضايا%20أخرى%20(منقحة).-.الفيفي،%20أ.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="د.%20عبدالله%20بن%20أحمد،%20شعر%20التفعيلات%20وقضايا%20أخرى%20(منقحة).-.الفيفي،%20أ.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -290,7 +485,7 @@
                 <span class="book-number">23</span>
                 <span class="book-title">الجمل في النحو - الزجاج</span>
             </div>
-            <a href="الجمل%20في%20النحو%20الزجاج.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="الجمل%20في%20النحو%20الزجاج.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -298,7 +493,7 @@
                 <span class="book-number">24</span>
                 <span class="book-title">فضاء الكتب - درة الغواص وشرحها وحواشيها وتكملتها</span>
             </div>
-            <a href="فضاء%20الكتب-%20درة%20الغواص%20وشرحها%20وحواشيها%20وتكملتها.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="فضاء%20الكتب-%20درة%20الغواص%20وشرحها%20وحواشيها%20وتكملتها.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -306,7 +501,7 @@
                 <span class="book-number">25</span>
                 <span class="book-title">مختصر تاريخ المغرب من الفتح الاسلامي إلى بناء الدولة المغربية الحديثة</span>
             </div>
-            <a href="مختصر%20تاريخ%20المغرب%20من%20الفتح%20الاسلامي%20إلى%20بناء%20الدولة%20المغربية%20الحديثة.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="مختصر%20تاريخ%20المغرب%20من%20الفتح%20الاسلامي%20إلى%20بناء%20الدولة%20المغربية%20الحديثة.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -314,7 +509,7 @@
                 <span class="book-number">26</span>
                 <span class="book-title">في تحليل الخطاب الشعري (Noor-Book.com)</span>
             </div>
-            <a href="في%20تحليل%20الخطاب%20الشعري%20Noor-Book.com.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="في%20تحليل%20الخطاب%20الشعري%20Noor-Book.com.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -322,7 +517,7 @@
                 <span class="book-number">27</span>
                 <span class="book-title">تحليل النص دراسة الروابط النصية في ضوء علم اللغة النصي</span>
             </div>
-            <a href="تحليل%20النص%20دراسة%20الروابط%20النصية%20في%20ضوء%20علم%20اللغة%20النصي3.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="تحليل%20النص%20دراسة%20الروابط%20النصية%20في%20ضوء%20علم%20اللغة%20النصي3.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -330,7 +525,7 @@
                 <span class="book-number">28</span>
                 <span class="book-title">لغة الشعر دراسة في الضرورة الشعرية (Noor-Book.com)</span>
             </div>
-            <a href="لغة%20الشعر%20دراسة%20في%20الضرورة%20الشعرية%203%20Noor-Book.com.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="لغة%20الشعر%20دراسة%20في%20الضرورة%20الشعرية%203%20Noor-Book.com.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -338,7 +533,7 @@
                 <span class="book-number">29</span>
                 <span class="book-title">تحليل الخطاب الشعري في منظور اللسانيات النصية</span>
             </div>
-            <a href="تحليل%20الخطاب%20الشعري%20في%20منظور%20اللسانيات3النصية.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="تحليل%20الخطاب%20الشعري%20في%20منظور%20اللسانيات3النصية.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -346,7 +541,7 @@
                 <span class="book-number">30</span>
                 <span class="book-title">لسانيات الخطاب الأسلوبية و التلفظ و التداولية</span>
             </div>
-            <a href="لسانيات%20الخطاب%20الاسلوبية%20و%20التلفظ%20و%20التداولية%201(3).pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="لسانيات%20الخطاب%20الاسلوبية%20و%20التلفظ%20و%20التداولية%201(3).pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -354,7 +549,7 @@
                 <span class="book-number">31</span>
                 <span class="book-title">في اللسانيات التداولية (Noor-Book.com)</span>
             </div>
-            <a href="في%20اللسانيات%20التداولية%203%20Noor-Book.com.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="في%20اللسانيات%20التداولية%203%20Noor-Book.com.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -362,7 +557,7 @@
                 <span class="book-number">32</span>
                 <span class="book-title">التداولية وتحليل الخطاب السيميائي في النقد الأدبي المعاصر - هامل بن عيسى</span>
             </div>
-            <a href="التداولية%20وتحليل%20الخطاب%20السيميائي%20في%20النقد%20الأدبي%20المعاصر%20هامل%20بن%20عيسى3.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="التداولية%20وتحليل%20الخطاب%20السيميائي%20في%20النقد%20الأدبي%20المعاصر%20هامل%20بن%20عيسى3.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -370,7 +565,7 @@
                 <span class="book-number">33</span>
                 <span class="book-title">مقاربة تداولية للقصيدة التفاعلية النقائض - خديجة إبراهيمي</span>
             </div>
-            <a href="مقاربة%20تداولية%20للقصيدة%20التفاعلية%20النقائض3(1)أنموذجا%20خديجة%20إبراهيمي.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="مقاربة%20تداولية%20للقصيدة%20التفاعلية%20النقائض3(1)أنموذجا%20خديجة%20إبراهيمي.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
         <div class="book-card">
@@ -378,7 +573,7 @@
                 <span class="book-number">34</span>
                 <span class="book-title">بين تداولية الأفعال الكلامية والحجاج مقاربة مفاهيمية</span>
             </div>
-            <a href="بين%20تداولية%20الأفعال%20الكلامية%20والحجاج%20مقاربة%20مفاهيمية3.pdf" class="download-btn" target="_blank">تحميل / عرض</a>
+            <a href="بين%20تداولية%20الأفعال%20الكلامية%20والحجاج%20مقاربة%20مفاهيمية3.pdf" class="download-btn">تحميل / عرض</a>
         </div>
 
     </div>
@@ -386,6 +581,206 @@
     <footer>
         جميع الحقوق محفوظة &copy; 2026
     </footer>
+
+    <!-- ================= نافذة الخيارات ================= -->
+    <div class="modal-overlay" id="optionsModal">
+        <div class="modal">
+            <div class="modal-icon">📚</div>
+            <h3 id="optTitle">عنوان الكتاب</h3>
+            <p class="modal-sub">اختر ما تريد فعله بهذا الكتاب</p>
+            <div class="modal-actions">
+                <button class="btn btn-read" id="readBtn">📖 قراءة</button>
+                <button class="btn btn-download" id="downloadBtn">⬇ تحميل</button>
+            </div>
+            <button class="modal-close" data-close="optionsModal">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- ================= نافذة تأكيد التحميل ================= -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-icon">⬇️</div>
+            <h3>تأكيد التحميل</h3>
+            <p class="modal-sub" id="confirmText">هل توافق على تحميل هذا الملف؟</p>
+            <div class="modal-actions">
+                <button class="btn btn-download" id="confirmYes">موافقة وتحميل</button>
+                <button class="btn btn-cancel" id="confirmNo">رفض</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= نافذة القراءة ================= -->
+    <div class="modal-overlay" id="readerModal">
+        <div class="reader-box">
+            <div class="reader-header">
+                <span class="reader-title" id="readerTitle">قراءة الكتاب</span>
+                <div class="reader-tools">
+                    <a id="openNewTab" href="#" target="_blank">فتح في نافذة جديدة</a>
+                    <button class="close-x" data-close="readerModal">✕ إغلاق</button>
+                </div>
+            </div>
+            <iframe id="pdfFrame" src="about:blank" title="عارض الكتب"></iframe>
+            <div class="reader-fallback">
+                إذا لم يظهر الكتاب داخل الصفحة، استخدم زر «فتح في نافذة جديدة» أو زر التحميل.
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= رسالة التنبيه ================= -->
+    <div class="toast" id="toast">بدأ تحميل الملف…</div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ---------- العناصر ---------- */
+        var optionsModal = document.getElementById('optionsModal');
+        var confirmModal = document.getElementById('confirmModal');
+        var readerModal  = document.getElementById('readerModal');
+
+        var optTitle     = document.getElementById('optTitle');
+        var confirmText  = document.getElementById('confirmText');
+        var readerTitle  = document.getElementById('readerTitle');
+        var pdfFrame     = document.getElementById('pdfFrame');
+        var openNewTab   = document.getElementById('openNewTab');
+        var toast        = document.getElementById('toast');
+
+        var readBtn      = document.getElementById('readBtn');
+        var downloadBtn  = document.getElementById('downloadBtn');
+        var confirmYes   = document.getElementById('confirmYes');
+        var confirmNo    = document.getElementById('confirmNo');
+
+        var currentHref  = '';
+        var currentTitle = '';
+        var toastTimer   = null;
+
+        /* ---------- أدوات مساعدة ---------- */
+        function openModal(el) {
+            el.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(el) {
+            el.classList.remove('active');
+            // لو لم تبقَ أي نافذة مفتوحة، أعد التمرير للصفحة
+            if (!document.querySelector('.modal-overlay.active')) {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeAll() {
+            document.querySelectorAll('.modal-overlay.active').forEach(function (m) {
+                m.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () {
+                toast.classList.remove('show');
+            }, 2600);
+        }
+
+        function fileNameFromHref(href) {
+            var name = href.split('/').pop();
+            try { return decodeURIComponent(name); } catch (e) { return name; }
+        }
+
+        /* ---------- ربط أزرار الكتب ---------- */
+        document.querySelectorAll('.download-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                currentHref  = btn.getAttribute('href');
+                currentTitle = btn.closest('.book-card')
+                                  .querySelector('.book-title')
+                                  .textContent
+                                  .trim();
+
+                optTitle.textContent = currentTitle;
+                openModal(optionsModal);
+            });
+        });
+
+        /* ---------- زر القراءة ---------- */
+        readBtn.addEventListener('click', function () {
+            closeModal(optionsModal);
+
+            readerTitle.textContent = currentTitle;
+            openNewTab.href = currentHref;
+            pdfFrame.src = currentHref;
+
+            openModal(readerModal);
+        });
+
+        /* ---------- زر التحميل (يفتح نافذة التأكيد) ---------- */
+        downloadBtn.addEventListener('click', function () {
+            closeModal(optionsModal);
+
+            confirmText.textContent = 'هل توافق على تحميل: «' + currentTitle + '»؟';
+            openModal(confirmModal);
+        });
+
+        /* ---------- موافقة على التحميل ---------- */
+        confirmYes.addEventListener('click', function () {
+            closeModal(confirmModal);
+
+            var a = document.createElement('a');
+            a.href = currentHref;
+            a.download = fileNameFromHref(currentHref);
+            a.rel = 'noopener';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            showToast('✔ تم بدء تحميل الملف');
+        });
+
+        /* ---------- رفض التحميل ---------- */
+        confirmNo.addEventListener('click', function () {
+            closeModal(confirmModal);
+            showToast('✖ تم إلغاء التحميل');
+        });
+
+        /* ---------- إغلاق نوافذ القراءة ---------- */
+        document.querySelectorAll('[data-close]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = btn.getAttribute('data-close');
+                var modal = document.getElementById(id);
+                if (id === 'readerModal') {
+                    pdfFrame.src = 'about:blank'; // إيقاف تحميل الملف
+                }
+                closeModal(modal);
+            });
+        });
+
+        /* ---------- الإغلاق بالنقر على الخلفية ---------- */
+        [optionsModal, confirmModal, readerModal].forEach(function (overlay) {
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) {
+                    if (overlay === readerModal) {
+                        pdfFrame.src = 'about:blank';
+                    }
+                    closeModal(overlay);
+                }
+            });
+        });
+
+        /* ---------- الإغلاق بمفتاح Escape ---------- */
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                if (readerModal.classList.contains('active')) {
+                    pdfFrame.src = 'about:blank';
+                }
+                closeAll();
+            }
+        });
+
+    })();
+    </script>
 
 </body>
 </html>
